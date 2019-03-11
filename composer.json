@@ -1,0 +1,18 @@
+{
+    "name": "cardcc/validix",
+    "description": "Common identifier validators",
+    "authors": [
+        {
+            "name": "Carlos Cardoso",
+            "email": "carloscardoso@blixdigital.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Validix\\": "src/Validix"
+        }
+    },
+    "require": {
+        "php": ">=7.0"
+    }
+}
