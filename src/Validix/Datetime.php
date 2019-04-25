@@ -44,8 +44,10 @@ class Datetime
 
     public function isValid($value)
     {
-
-        $value = (string)$value;
+        if ( !is_string($value) ) {
+            $this->error(self::MSG_DATE_ERROR);
+            return false;
+        }
 
         $this->setValue($value);
 
