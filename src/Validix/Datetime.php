@@ -42,39 +42,6 @@ class Datetime
     }
 
 
-    /**
-     * Definir as opções de validação
-     *
-     * @param array $options
-     * @return $this
-     */
-    public function setOptions(array $options)
-    {
-
-        foreach ($options as $field => $value) {
-
-            switch ($field) {
-
-                case 'format':
-                    $this->setFormat($value);
-                    break;
-
-                case 'min':
-                    $this->setMin($value);
-                    break;
-
-                case 'max':
-                    $this->setMax($value);
-                    break;
-
-            }
-        }
-
-        return $this;
-
-    }
-
-
     public function isValid($value)
     {
 
@@ -144,10 +111,10 @@ class Datetime
     /**
      * Definir a data validada como objecto DateTime
      *
-     * @param DateTime $value
+     * @param \DateTime $value
      * @return $this
      */
-    protected function setValueDateTime(DateTime $value)
+    protected function setValueDateTime(\DateTime $value)
     {
 
         $this->valueDateTime = $value;
@@ -170,12 +137,12 @@ class Datetime
     /**
      * Verificar se a data inserida se encontra contida num determinado intervalo
      *
-     * @param DateTime $value
-     * @param DateTime $min
-     * @param DateTime $max
+     * @param \DateTime $value
+     * @param \DateTime $min
+     * @param \DateTime $max
      * @return bool
      */
-    protected function validateDateInterval(DateTime $value, DateTime $min, DateTime $max)
+    protected function validateDateInterval(\DateTime $value, \DateTime $min, \DateTime $max)
     {
 
         if (($value >= $min) && ($value <= $max)) {
@@ -190,11 +157,11 @@ class Datetime
     /**
      * Definir o mínimo
      *
-     * @param Datetime $value
+     * @param \Datetime $value
      * @return $this
      * @throws ValidixException
      */
-    public function setMin(DateTime $value)
+    public function setMin(\DateTime $value)
     {
 
         $max = $this->getMax();
@@ -214,11 +181,11 @@ class Datetime
     /**
      * Definir o máximo
      *
-     * @param DateTime $value
+     * @param \DateTime $value
      * @return $this
      * @throws ValidixException
      */
-    public function setMax(DateTime $value)
+    public function setMax(\DateTime $value)
     {
 
         $min = $this->getMin();
@@ -238,7 +205,7 @@ class Datetime
     /**
      * Obter o mínimo
      *
-     * @return DateTime
+     * @return \DateTime
      */
     public function getMin()
     {
@@ -250,7 +217,7 @@ class Datetime
     /**
      * Obter o máximo
      *
-     * @return DateTime
+     * @return \DateTime
      */
     public function getMax()
     {
