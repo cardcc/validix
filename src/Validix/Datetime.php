@@ -27,9 +27,9 @@ class Datetime
     protected $format = 'd-m-Y H:i:s';
 
     protected $messageTemplates = array(
-        self::MSG_UNDEFINED_FORMAT => "O formato não foi corretamente definido",
-        self::MSG_DATE_INTERVAL_ERROR => "'%value%' não está entre os valores definidos de intervalo",
-        self::MSG_DATE_ERROR => "'%value%' não identifica uma data válida",
+        self::MSG_UNDEFINED_FORMAT => "The format was not defined correctly",
+        self::MSG_DATE_INTERVAL_ERROR => "'%value%' is not amongst the values defined in the interval",
+        self::MSG_DATE_ERROR => "'%value%' does not identify a valid datetime",
 
     );
 

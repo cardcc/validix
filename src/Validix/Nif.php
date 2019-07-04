@@ -13,8 +13,8 @@ class Nif
     const MSG_NIF       = 'msgNif';
 
     protected $_messageTemplates = array(
-        self::MSG_NUMERIC   => "'%value%' não é um número",
-        self::MSG_NIF       => "'%value%' não é um Número de Identificação Fiscal válido",
+        self::MSG_NUMERIC   => "'%value%' is not a number",
+        self::MSG_NIF       => "'%value%' is not a valid NIF",
     );
 
     public function isValid($value)
