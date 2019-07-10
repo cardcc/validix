@@ -39,6 +39,7 @@ class Nif
 
     protected function validateNif ( $nif ) {
 
+        $nif = (string) $nif;
         if ( (!is_null($nif)) && (is_numeric($nif)) && (strlen($nif)==9) && ($nif[0]==1 || $nif[0]==2 || $nif[0]==5 || $nif[0]==6 || $nif[0]==7 || $nif[0]==8 || $nif[0]==9) ) {
 
             $dC = $nif[0] * 9;
