@@ -20,6 +20,10 @@ class DatetimeInterval
 
     protected $end = null;
 
+    protected $min = null;
+
+    protected $max = null;
+
     /**
      * Formato a ser utilizado
      *
@@ -74,7 +78,17 @@ class DatetimeInterval
             return false;
         }
 
-        if ( $start <= $end ) {
+        if ( $start > $end ) {
+
+            $this->error(self::MSG_DATE_INVALID_INTERVAL);
+            return false;
+
+        }
+
+        $min = $this->getMin() ? $this->getMin() : $start;
+        $max = $this->getMax() ? $this->getMax() : $end;
+
+        if ( $start >= $min && $end <= $max ) {
 
             $this->start = $start;
             $this->end = $end;
@@ -137,6 +151,97 @@ class DatetimeInterval
     {
 
         return $this->format;
+    }
+
+    /**
+     * Obter o mínimo
+     *
+     * @return \DateTime
+     */
+    public function getMin()
+    {
+
+        return $this->min;
+    }
+
+
+    /**
+     * Obter o máximo
+     *
+     * @return \DateTime
+     */
+    public function getMax()
+    {
+
+        return $this->max;
+    }
+
+
+    /**
+     * Definir o mínimo
+     *
+     * @param \Datetime $value
+     * @return $this
+     * @throws ValidixException
+     */
+    public function setMin(\DateTime $value)
+    {
+
+        $max = $this->getMax();
+        if ($max) {
+
+            if (!$this->validateDateInterval($value, $value, $max)) {
+
+                throw new ValidixException(get_class($this) . " - O mínimo submetido " . $value->format('Y-m-d') . " não é menor que o máximo " . $max->format('Y-m-d'));
+            }
+        }
+
+        $this->min = $value;
+        return $this;
+    }
+
+
+    /**
+     * Definir o máximo
+     *
+     * @param \DateTime $value
+     * @return $this
+     * @throws ValidixException
+     */
+    public function setMax(\DateTime $value)
+    {
+
+        $min = $this->getMin();
+        if ($min) {
+
+            if (!$this->validateDateInterval($value, $min, $value)) {
+
+                throw new ValidixException(get_class($this) . " - O máximo submetido " . $value->format('Y-m-d') . " não é maior que o mínimo " . $min->format('Y-m-d'));
+            }
+        }
+
+        $this->max = $value;
+        return $this;
+    }
+
+
+    /**
+     * Verificar se a data inserida se encontra contida num determinado intervalo
+     *
+     * @param \DateTime $value
+     * @param \DateTime $min
+     * @param \DateTime $max
+     * @return bool
+     */
+    protected function validateDateInterval(\DateTime $value, \DateTime $min, \DateTime $max)
+    {
+
+        if (($value >= $min) && ($value <= $max)) {
+
+            return true;
+        }
+
+        return false;
     }
 
 
