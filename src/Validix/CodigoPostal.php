@@ -21,7 +21,7 @@ class CodigoPostal
         $this->setValue($value);
         $value = (string) $value;
 
-        if ( preg_match('/^[0-9]{4}$/D',$value) ) {
+        if ( !preg_match('/^[0-9]{4}$/D',$value) ) {
 
             $this->error(self::MSG_INVALID);
             return false;
